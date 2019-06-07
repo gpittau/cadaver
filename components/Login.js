@@ -1,17 +1,18 @@
-import { useFirebaseAuth, AuthProvider } from '@use-firebase/auth';
- 
-const NonAuthenticatedApp = () => {
-  const [message, setMesage] = useState('');
+import React, { useState } from "react";
+import { useFirebaseAuth, AuthProvider } from "@use-firebase/auth";
+
+export default () => {
+  const [message, setMesage] = useState("");
   const { signIn, createAuthProvider } = useFirebaseAuth();
- 
+
   const signInWithRedirect = authProvider => {
-    setMesage('');
+    setMesage("");
     const provider = createAuthProvider(authProvider);
     signIn(provider).catch(error => {
       setMesage(error.message);
     });
   };
- 
+
   return (
     <div>
       <h1>Please Sign In</h1>
